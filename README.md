@@ -1,0 +1,12 @@
+# SPIFFE FS
+
+[![Apache 2.0 License](https://img.shields.io/github/license/spiffe/spiffefs)](https://opensource.org/licenses/Apache-2.0)
+[![Development Phase](https://github.com/spiffe/spiffe/blob/main/.img/maturity/dev.svg)](https://github.com/spiffe/spiffe/blob/main/MATURITY.md#development)
+
+A filesystem to deliver using the spiffe filesystem delivery spec
+
+## Warning
+
+This code is very early in development and is very experimental. Please do not use it in production yet. Please do consider testing it out, provide feedback,
+and maybe provide fixes.
+
