@@ -121,7 +121,7 @@ mkdir -p /tmp/mnt
 sudo ./spiffefs /tmp/mnt &
 
 #FIXME wait for spiffefs startup....
-sleep 5
+sleep 15
 
 sudo cp tests/test*.sh /usr/libexec/
 sudo cp tests/systemd/test*.service /etc/systemd/system
