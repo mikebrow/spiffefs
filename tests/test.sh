@@ -78,7 +78,9 @@ sudo curl -s -o /etc/apt/sources.list.d/spire-examples.list https://raw.githubus
 sudo apt-get update
 sudo apt-get install -y spire-common spire-agent spire-server spire-controller-manager
 
+# Configure things
 sudo /bin/bash -c "echo SPIRE_BIND_PORT=8082 > /etc/spire/server/other.env"
+sudo /bin/bash -c "echo SPIFFE_TRUST_DOMAIN=other.org >> /etc/spire/server/other.env"
 
 # Startup the servers
 sudo systemctl start spire-server@main spire-server@other
