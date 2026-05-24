@@ -20,6 +20,7 @@ teardown() {
   if [ $1 -ne 0 ]; then
     systemctl status spire-server@main || true
     systemctl status spire-server@other || true
+    systemctl status test1 || true
   fi
 }
 
@@ -105,4 +106,16 @@ sudo /bin/bash -c "echo JOIN_TOKEN=${JOIN_TOKEN} > /etc/spire/agent/main.env"
 # Startup the agent
 sudo systemctl start spire-agent@main
 wait_for_healthcheck spire-agent /var/run/spire/agent/sockets/main/public/api.sock
+
+# Build the code
+go build -o spiffefs spire.go main.go
+
+# Start it up
+mkdir -p /tmp/mnt
+sudo ./spiffefs /tmp/mnt &
+
+sudo cp tests/test1.sh /usr/libexec/
+sudo cp tests/systemd/test1.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl start --wait test1
 
