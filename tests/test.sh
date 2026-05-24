@@ -117,6 +117,9 @@ go build -o spiffefs spire.go main.go
 mkdir -p /tmp/mnt
 sudo ./spiffefs /tmp/mnt &
 
+#FIXME wait for spiffefs startup....
+sleep 5
+
 sudo cp tests/test1.sh /usr/libexec/
 sudo cp tests/systemd/test1.service /etc/systemd/system
 sudo systemctl daemon-reload
