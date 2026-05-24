@@ -16,3 +16,5 @@ other=$(grep -l "other" /tmp/mnt/x509/*/*hint | xargs -I {} dirname {}/credentia
 other=$(dirname "$(grep -l "other" /tmp/mnt/x509/*/*hint 2>/dev/null | head -n 1)")
 openssl x509 -in "$main/credential-bundle.pem" -noout -text | grep URI:spiffe://example.org/test2/main
 openssl x509 -in "$other/credential-bundle.pem" -noout -text | grep URI:spiffe://example.org/test2/other
+
+openssl x509 -in "$main/other.org.spiffe-trust-bundle.pem" -noout -text | grep URI:spiffe://other.org
