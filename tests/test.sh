@@ -20,6 +20,7 @@ teardown() {
   if [ $1 -ne 0 ]; then
     systemctl status spire-server@main || true
     systemctl status spire-server@other || true
+    systemctl status spire-agent@main || true
     systemctl status test1 || true
   fi
 }
