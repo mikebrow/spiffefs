@@ -19,6 +19,7 @@ teardown() {
   echo ---------------------------
   if [ $1 -ne 0 ]; then
     systemctl status spire-server@main || true
+    systemctl status spire-controller-manager@main || true
     systemctl status spire-server@other || true
     systemctl status spire-agent@main || true
     systemctl status test1 || true
@@ -86,7 +87,7 @@ sudo /bin/bash -c "echo SPIFFE_TRUST_DOMAIN=other.org >> /etc/spire/server/other
 sudo sed -i 's/spire-ha-agent/spiffefs/' /etc/spire/agent/default.conf
 
 # Startup the servers
-sudo systemctl start spire-server@main spire-server@other
+sudo systemctl start spire-server@main spire-server@other spire-controller-manager@main
 
 # Register some workloads with the spire server using manifests
 sudo mkdir -p /etc/spire/server/main/manifests/
