@@ -93,7 +93,9 @@ sudo cp "${SCRIPTPATH}/example-manifests"/* /etc/spire/server/main/manifests/
 wait_for_healthcheck spire-server /run/spire/server/sockets/main/private/api.sock
 wait_for_healthcheck spire-server /run/spire/server/sockets/other/private/api.sock
 
-sudo spire-server bundle show -instance other
+sudo spire-server bundle show -instance other | sudo spire-server bundle set -id other.org
+
+sudo spire-server bundle list
 
 # Configure agent. For the test, create join tokens for both agents. You should really use a node attestor other then join tokens such as tpm-direct, http_challenge, or a cloud provider one
 JOIN_TOKEN=$(sudo spire-server token generate -spiffeID spiffe://example.org/agent/node1 | awk '{print "\""$2"\""}')
