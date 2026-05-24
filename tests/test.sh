@@ -17,8 +17,10 @@ fi
 
 teardown() {
   echo ---------------------------
-  systemctl status spire-server@main || true
-  systemctl status spire-server@other || true
+  if [ $0 -ne 0 ]; then
+    systemctl status spire-server@main || true
+    systemctl status spire-server@other || true
+  fi
 }
 
 trap 'EC=$? && trap - SIGTERM && teardown $EC' SIGINT SIGTERM EXIT
@@ -85,6 +87,9 @@ sudo cp "${SCRIPTPATH}/example-manifests"/* /etc/spire/server/main/manifests/
 
 # Startup servers and make sure they are ready
 wait_for_healthcheck spire-server /run/spire/server/sockets/main/private/api.sock
+wait_for_healthcheck spire-server /run/spire/server/sockets/other/private/api.sock
+
+sudo spire-server -instance other bundle show
 
 # Configure agent. For the test, create join tokens for both agents. You should really use a node attestor other then join tokens such as tpm-direct, http_challenge, or a cloud provider one
 JOIN_TOKEN=$(sudo spire-server token generate -spiffeID spiffe://example.org/agent/node1 | awk '{print "\""$2"\""}')
