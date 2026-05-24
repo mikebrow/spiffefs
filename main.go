@@ -496,6 +496,7 @@ func main() {
 		AttrTimeout:  &zeroDuration,
 		MountOptions: fuse.MountOptions{
 			AllowOther: true,
+			DirectMount: true,
 		},
 	}
 
