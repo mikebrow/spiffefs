@@ -22,6 +22,7 @@ teardown() {
     systemctl status spire-controller-manager@main || true
     systemctl status spire-server@other || true
     systemctl status spire-agent@main || true
+    sudo spire-server entry show || true
     systemctl status test1 || true
   fi
 }
