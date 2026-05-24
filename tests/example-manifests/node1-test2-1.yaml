@@ -8,3 +8,5 @@ spec:
   selectors:
   - systemd:id:test2.service
   hint: main
+  federatesWith:
+  - other.org

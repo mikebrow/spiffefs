@@ -128,3 +128,5 @@ sudo systemctl start --wait test1
 sudo systemctl status test1 || true
 sudo systemctl start --wait test2
 sudo systemctl status test2 || true
+sudo systemctl start --wait test3
+sudo systemctl status test3 || true
