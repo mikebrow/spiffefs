@@ -17,7 +17,7 @@ fi
 
 teardown() {
   echo ---------------------------
-  if [ $0 -ne 0 ]; then
+  if [ $1 -ne 0 ]; then
     systemctl status spire-server@main || true
     systemctl status spire-server@other || true
   fi
@@ -76,7 +76,9 @@ wait_for_jwt() {
 # Get the package repo and install the packages
 sudo curl -s -o /etc/apt/sources.list.d/spire-examples.list https://raw.githubusercontent.com/spiffe/spire-examples/refs/heads/main/examples/debs/amd64/spire-examples.list
 sudo apt-get update
-sudo apt-get install -y spire-common spire-agent spire-server spire-controller-manager spiffe-socat-unix socat spire-trust-sync spiffe-helper
+sudo apt-get install -y spire-common spire-agent spire-server spire-controller-manager
+
+sudo /bin/bash -c "echo SPIRE_BIND_PORT=8082 > /etc/spire/server/other.env"
 
 # Startup the servers
 sudo systemctl start spire-server@main spire-server@other
