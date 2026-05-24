@@ -115,6 +115,8 @@ go build -o spiffefs spire.go main.go
 mkdir -p /tmp/mnt
 sudo ./spiffefs /tmp/mnt &
 
+cat /etc/spire/server/default.conf
+
 sudo cp tests/test1.sh /usr/libexec/
 sudo cp tests/systemd/test1.service /etc/systemd/system
 sudo systemctl daemon-reload
