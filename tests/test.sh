@@ -83,6 +83,7 @@ sudo apt-get install -y spire-common spire-agent spire-server spire-controller-m
 # Configure things
 sudo /bin/bash -c "echo SPIRE_BIND_PORT=8082 > /etc/spire/server/other.env"
 sudo /bin/bash -c "echo SPIFFE_TRUST_DOMAIN=other.org >> /etc/spire/server/other.env"
+sudo sed -i 's/spire-ha-agent/spiffefs/' /etc/spire/agent/default.conf
 
 # Startup the servers
 sudo systemctl start spire-server@main spire-server@other
@@ -114,8 +115,6 @@ go build -o spiffefs spire.go main.go
 # Start it up
 mkdir -p /tmp/mnt
 sudo ./spiffefs /tmp/mnt &
-
-cat /etc/spire/server/default.conf
 
 sudo cp tests/test1.sh /usr/libexec/
 sudo cp tests/systemd/test1.service /etc/systemd/system
