@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+# Check for 2 svids, both with hints. Main is federated.
+
 ls -l /tmp/mnt/x509/0
 ls -l /tmp/mnt/x509/1
 diff -u <(echo main; echo other) <(sort -u /tmp/mnt/x509/*/hint)

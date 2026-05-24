@@ -120,7 +120,7 @@ go build -o spiffefs spire.go main.go
 mkdir -p /tmp/mnt
 sudo ./spiffefs /tmp/mnt &
 
-#FIXME wait for spiffefs startup....
+#FIXME wait for spiffefs startup.... probably needs a health check to fix.
 sleep 15
 
 sudo cp tests/test*.sh /usr/libexec/
