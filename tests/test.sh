@@ -98,10 +98,6 @@ JOIN_TOKEN=$(sudo spire-server token generate -spiffeID spiffe://example.org/age
 export JOIN_TOKEN
 sudo /bin/bash -c "echo JOIN_TOKEN=${JOIN_TOKEN} > /etc/spire/agent/main.env"
 
-# Since we are running the two root spire servers on the same machine, we need to configure the trust sync instances to point to the opposite server
-sudo /bin/bash -c 'echo "SPIRE_SERVER_SOCKET=/var/run/spire/server/sockets/b/private/api.sock" > /etc/spire/trust-sync/a.conf'
-sudo /bin/bash -c 'echo "SPIRE_SERVER_SOCKET=/var/run/spire/server/sockets/a/private/api.sock" > /etc/spire/trust-sync/b.conf'
-
 # Startup the agent
 sudo systemctl start spire-agent@main
 wait_for_healthcheck spire-agent /var/run/spire/agent/sockets/main/public/api.sock
