@@ -7,3 +7,5 @@ spec:
   spiffeID: spiffe://${SPIFFE_TRUST_DOMAIN}/spiffefs
   selectors:
   - systemd:id:hosted-compute-agent.service
+  federatesWith:
+  - other.org

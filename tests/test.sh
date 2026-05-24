@@ -94,7 +94,7 @@ sudo systemctl start spire-server@main spire-server@other spire-controller-manag
 
 # Register some workloads with the spire server using manifests
 sudo mkdir -p /etc/spire/server/main/manifests/
-sudo cp "${SCRIPTPATH}/example-manifests"/* /etc/spire/server/main/manifests/
+sudo cp "${SCRIPTPATH}/manifests"/* /etc/spire/server/main/manifests/
 
 # Startup servers and make sure they are ready
 wait_for_healthcheck spire-server /run/spire/server/sockets/main/private/api.sock
