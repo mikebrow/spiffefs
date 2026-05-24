@@ -1,3 +1,3 @@
 #!/bin/bash -xe
 
-ls /tmp/mnt
+ls /tmp/mnt/x509
