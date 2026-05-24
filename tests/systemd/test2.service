@@ -1,0 +1,10 @@
+[Unit]
+Description=test2
+
+[Service]
+Type=oneshot
+Restart=no
+ExecStart=/usr/libexec/test2.sh
+
+[Install]
+WantedBy=multi-user.target

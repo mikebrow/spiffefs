@@ -1,0 +1,11 @@
+apiVersion: spire.spiffe.io/v1alpha1
+kind: ClusterStaticEntry
+metadata:
+  name: node1-spiffefs
+spec:
+  parentID: spiffe://${SPIFFE_TRUST_DOMAIN}/agent/node1
+  spiffeID: spiffe://${SPIFFE_TRUST_DOMAIN}/spiffefs
+  selectors:
+  - systemd:id:hosted-compute-agent.service
+  federatesWith:
+  - other.org
