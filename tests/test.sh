@@ -77,7 +77,7 @@ sudo apt-get update
 sudo apt-get install -y spire-common spire-agent spire-server spire-controller-manager spiffe-socat-unix socat spire-trust-sync spiffe-helper
 
 # Startup the servers
-systemctl start spire-server@main spire-server@other
+sudo systemctl start spire-server@main spire-server@other
 
 # Register some workloads with the spire server using manifests
 sudo mkdir -p /etc/spire/server/main/manifests/
